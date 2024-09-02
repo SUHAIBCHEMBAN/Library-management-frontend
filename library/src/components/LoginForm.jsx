@@ -1,8 +1,7 @@
-// src/components/LoginForm.jsx
-
 import { useState } from 'react';
 import { loginUser } from '../api';
 import { useNavigate } from 'react-router-dom';
+import { Box, Button, Container, TextField, Typography, Paper } from '@mui/material';
 
 const LoginForm = () => {
   const [username, setUsername] = useState('');
@@ -22,28 +21,41 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    <Container maxWidth="sm">
+      <Paper elevation={3} sx={{ padding: 4, mt: 8 }}>
+        <Typography variant="h4" component="h2" gutterBottom align="center">
+          Login
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              fullWidth
+              label="Username"
+              variant="outlined"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </Box>
+          <Box sx={{ mb: 2 }}>
+            <TextField
+              fullWidth
+              label="Password"
+              type="password"
+              variant="outlined"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Box>
+          <Box sx={{ textAlign: 'center' }}>
+            <Button type="submit" variant="contained" color="primary" size="large">
+              Login
+            </Button>
+          </Box>
+        </form>
+      </Paper>
+    </Container>
   );
 };
 
